@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return "hello world";
+    return "welcome to yongzhen";
 });
