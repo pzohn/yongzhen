@@ -32,4 +32,9 @@ class  Good extends Model {
         $count = Good::get()->count();
         return $count;
     }
+
+    public static function GetGoodCountByType($typeid) {
+        $count = Good::where("type_id", $typeid)->get()->count();
+        return $count;
+    }
 }

@@ -16,4 +16,14 @@ class GoodController extends Controller
             $good
         ];
     }
+
+    public function getGoodByType(Request $req) {
+        $type_id = $req->get('type_id');
+        $good = Good::GetGoodByType($type_id);
+        $count = Good::GetGoodCountByType();
+        return [
+            $count,
+            $good
+        ];
+    }
 }

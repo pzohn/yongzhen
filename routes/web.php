@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::post('/onGetUser', 'UserController@getUser');
 
 Route::post('/getGood', 'GoodController@getGood');
+
+Route::post('/getGoodByType', 'GoodController@getGoodByType');
