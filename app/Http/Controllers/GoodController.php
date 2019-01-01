@@ -20,7 +20,7 @@ class GoodController extends Controller
     public function getGoodByType(Request $req) {
         $type_id = $req->get('type_id');
         $good = Good::GetGoodByType($type_id);
-        $count = Good::GetGoodCountByType();
+        $count = Good::GetGoodCountByType($type_id);
         return [
             $count,
             $good
