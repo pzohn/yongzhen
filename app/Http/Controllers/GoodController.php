@@ -12,8 +12,8 @@ class GoodController extends Controller
         $good = Good::GetGood();
         $count = Good::GetGoodCount();
         return [
-            $count,
-            $good
+            "count" => $count,
+            "good" => $good
         ];
     }
 
@@ -22,8 +22,8 @@ class GoodController extends Controller
         $good = Good::GetGoodByType($type_id);
         $count = Good::GetGoodCountByType($type_id);
         return [
-            $count,
-            $good
+            "count" => $count,
+            "good" => $good
         ];
     }
 }
