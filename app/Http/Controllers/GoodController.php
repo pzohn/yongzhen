@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Good;
-use App\Libs\GuzzleHttp;
+use App\Models\City;
 
 class GoodController extends Controller
 {
@@ -21,9 +21,16 @@ class GoodController extends Controller
         $type_id = $req->get('type_id');
         $good = Good::GetGoodByType($type_id);
         $count = Good::GetGoodCountByType($type_id);
+        $goodTmp = [
+            "name" => $good->name,
+            "company" => $good->company,
+            "city" => City::GetCity($good->city_id),
+            "price_day" => $good->price_day,
+            "price_month" => $good->price_month
+        ];
         return [
             "count" => $count,
-            "good" => $good
+            "good" => $goodTmp
         ];
     }
 }
