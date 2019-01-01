@@ -19,4 +19,4 @@ Route::post('/onGetUser', 'UserController@getUser');
 
 Route::post('/getGood', 'GoodController@getGood');
 
-Route::post('/getGoodByType', 'GoodController@getGoodByType');
+Route::post('/getGoodsByType', 'GoodController@getGoodsByType');

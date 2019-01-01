@@ -14,27 +14,34 @@ class  Good extends Model {
         }
     }
 
-    public static function GetGoodByType($typeid) {
-        $good = Good::where("type_id", $typeid)->get();
-        if ($good) {
-            return $good;
+    public static function GetGoodsByType($typeid) {
+        $goods = Good::where("type_id", $typeid)->get();
+        if ($goods) {
+            return $goods;
         }
     }
 
-    public static function GetGood() {
-        $good = Good::get();
-        if ($good) {
-            return $good;
+    public static function GetGoods() {
+        $goods = Good::get();
+        if ($goods) {
+            return $goods;
         }
     }
 
-    public static function GetGoodCount() {
+    public static function GetGoodsCount() {
         $count = Good::get()->count();
         return $count;
     }
 
-    public static function GetGoodCountByType($typeid) {
+    public static function GetGoodsCountByType($typeid) {
         $count = Good::where("type_id", $typeid)->get()->count();
         return $count;
+    }
+
+    public static function GetGood($id) {
+        $good = Good::where("id", $id)->first();
+        if ($good) {
+            return $good;
+        }
     }
 }

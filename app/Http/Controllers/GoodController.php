@@ -8,7 +8,7 @@ use App\Models\City;
 
 class GoodController extends Controller
 {
-    public function getGood() {
+    public function getGoods() {
         $goods = Good::GetGood();
         $count = Good::GetGoodCount();
         return [
@@ -17,10 +17,10 @@ class GoodController extends Controller
         ];
     }
 
-    public function getGoodByType(Request $req) {
+    public function getGoodsByType(Request $req) {
         $type_id = $req->get('type_id');
-        $goods = Good::GetGoodByType($type_id);
-        $count = Good::GetGoodCountByType($type_id);
+        $goods = Good::GetGoodsByType($type_id);
+        $count = Good::GetGoodsCountByType($type_id);
         $goodsTmp = [];
         foreach ($goods as $k => $v) {
             $goodsTmp[] = [
@@ -37,5 +37,11 @@ class GoodController extends Controller
             "count" => $count,
             "goods" => $goodsTmp
         ];
+    }
+
+    public function getGood(Request $req) {
+        $id = $req->get('id');
+        $good = Good::GetGood($id);
+        return $good;
     }
 }
