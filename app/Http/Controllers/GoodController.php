@@ -9,28 +9,31 @@ use App\Models\City;
 class GoodController extends Controller
 {
     public function getGood() {
-        $good = Good::GetGood();
+        $goods = Good::GetGood();
         $count = Good::GetGoodCount();
         return [
             "count" => $count,
-            "good" => $good
+            "goods" => $goods
         ];
     }
 
     public function getGoodByType(Request $req) {
         $type_id = $req->get('type_id');
-        $good = Good::GetGoodByType($type_id);
+        $goods = Good::GetGoodByType($type_id);
         $count = Good::GetGoodCountByType($type_id);
-        $goodTmp = [
-            'name' => $good->name,
-            "company" => $good->company,
-            "city" => City::GetCity($good->city_id),
-            "price_day" => $good->price_day,
-            "price_month" => $good->price_month
-        ];
+        $goodsTmp = [];
+        foreach ($good as $k => $v) {
+            $goodsTmp[] = [
+            "name" => $v->name,
+            "company" => $v->company,
+            "city" => City::GetCity($v->city_id),
+            "price_day" => $v->price_day,
+            "price_month" => $v->price_month
+            ];
+        }
         return [
             "count" => $count,
-            "good" => $goodTmp
+            "goods" => $goodsTmp
         ];
     }
 }
