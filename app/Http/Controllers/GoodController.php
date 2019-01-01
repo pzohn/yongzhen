@@ -24,6 +24,7 @@ class GoodController extends Controller
         $goodsTmp = [];
         foreach ($goods as $k => $v) {
             $goodsTmp[] = [
+            "id" => $v->id,
             "name" => $v->name,
             "company" => $v->company,
             "city" => City::GetCity($v->city_id),
