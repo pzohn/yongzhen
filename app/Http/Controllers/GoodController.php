@@ -22,7 +22,6 @@ class GoodController extends Controller
         $good = Good::GetGoodByType($type_id);
         $count = Good::GetGoodCountByType($type_id);
         $goodTmp = [
-            "name" => $good->name,
             "company" => $good->company,
             "city" => City::GetCity($good->city_id),
             "price_day" => $good->price_day,
