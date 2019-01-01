@@ -28,7 +28,8 @@ class GoodController extends Controller
             "company" => $v->company,
             "city" => City::GetCity($v->city_id),
             "price_day" => $v->price_day,
-            "price_month" => $v->price_month
+            "price_month" => $v->price_month,
+            "product_pic" => $v->product_pic
             ];
         }
         return [
