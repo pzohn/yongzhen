@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 Route::post('/onGetUser', 'UserController@getUser');
 
-Route::post('/LoginWx', 'UserController@LoginWx');
+Route::post('/getGood', 'GoodController@getGood');
