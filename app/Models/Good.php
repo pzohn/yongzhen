@@ -27,4 +27,9 @@ class  Good extends Model {
             return $good;
         }
     }
+
+    public static function GetGoodCount() {
+        $count = Good::get()->count();
+        return $count;
+    }
 }

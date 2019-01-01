@@ -10,6 +10,10 @@ class GoodController extends Controller
 {
     public function getGood() {
         $good = Good::GetGood();
-        return $good;
+        $count = Good::GetGoodCount();
+        return [
+            $count,
+            $good
+        ];
     }
 }
