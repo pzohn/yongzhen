@@ -22,7 +22,7 @@ class GoodController extends Controller
         $goods = Good::GetGoodByType($type_id);
         $count = Good::GetGoodCountByType($type_id);
         $goodsTmp = [];
-        foreach ($good as $k => $v) {
+        foreach ($goods as $k => $v) {
             $goodsTmp[] = [
             "name" => $v->name,
             "company" => $v->company,
