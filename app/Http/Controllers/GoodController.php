@@ -95,7 +95,7 @@ class GoodController extends Controller
             $leasing = [];
             foreach ($arry as $v) {
                 $leasing[] = [
-                    Leasing::GetLeasing($v)
+                    "leasing" => Leasing::GetLeasing($v)
                 ];
             }
             return [
