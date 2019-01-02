@@ -59,7 +59,7 @@ class GoodController extends Controller
             "price_month" => $good->price_month,
             "leasing_pos" => $pos,
             "leasing_first" => $this->getLeasingFirst($leasing_ids),
-            "leasings" => $this->getLeasing($leasing_ids)
+            "leasings" => $leasing_ids
         ];
         return $goodTmp;
     }
@@ -80,7 +80,8 @@ class GoodController extends Controller
         }
     }
 
-    public function getLeasing($leasing_ids) {
+    public function getLeasing(Request $req) {
+        $leasing_ids = $req->get('leasing_ids');
         $pos = strpos($leasing_ids, '@');
         if ($pos == false){
             $leasing = Leasing::GetLeasing($leasing_ids);
