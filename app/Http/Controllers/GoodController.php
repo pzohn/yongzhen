@@ -72,7 +72,7 @@ class GoodController extends Controller
                 return $leasing;
             }
         }else{
-            $arry = preg_split("/@/",$trade->body);
+            $arry = preg_split("/@/",$leasing_ids);
             $leasing = Leasing::GetLeasing($arry[0]);
             if ($leasing){
                 return $leasing;
@@ -88,7 +88,7 @@ class GoodController extends Controller
                 return $leasing;
             }
         }else{
-            $arry = preg_split("/@/",$trade->body);
+            $arry = preg_split("/@/",$leasing_ids);
             $leasing = [];
             foreach ($arry as $k => $v) {
                 $leasing[] = [
