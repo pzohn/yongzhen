@@ -26,7 +26,7 @@ class GoodController extends Controller
             $goodsTmp[] = [
             "id" => $v->id,
             "name" => $v->name,
-            "company" => $v->company,
+	    "company" => $v->company,
             "city" => City::GetCity($v->city_id),
             "price_day" => $v->price_day,
             "price_month" => $v->price_month,
@@ -41,7 +41,21 @@ class GoodController extends Controller
 
     public function getGood(Request $req) {
         $id = $req->get('id');
-        $good = Good::GetGood($id);
-        return $good;
+	$good = Good::GetGood($id);
+	return $good;
+	$goodTmp =[
+		"name" => $good->name,
+		"brand" => $good->brand,
+		"register" => $good->register,
+		"number" => $good->number,
+		"product" => $good->product,
+		"use" => $good->use,
+		"product_pic" => $good->product_pic,
+		"detail_pic" => $good->detail_pic,
+		"price" => $good->price,
+		"price_day" => $good->price_day,
+		"price_month" => $good->price_month
+	];
+        return $goodTmp;
     }
 }
