@@ -21,4 +21,6 @@ Route::post('/getGood', 'GoodController@getGood');
 
 Route::post('/getGoodsByType', 'GoodController@getGoodsByType');
 
+Route::post('/getLeasings', 'GoodController@getLeasings');
+
 Route::post('/getLeasing', 'GoodController@getLeasing');

@@ -80,7 +80,7 @@ class GoodController extends Controller
         }
     }
 
-    public function getLeasing(Request $req) {
+    public function getLeasings(Request $req) {
         $leasing_ids = $req->get('leasing_ids');
         $pos = strpos($leasing_ids, '@');
         if ($pos == false){
@@ -103,5 +103,11 @@ class GoodController extends Controller
                 "leasings" => $leasing
             ];
         }
+    }
+
+    public function getLeasing(Request $req) {
+        $id = $req->get('id');
+        $leasing = Leasing::GetLeasing($id);
+        return $leasing;
     }
 }
