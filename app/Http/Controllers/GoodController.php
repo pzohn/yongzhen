@@ -27,7 +27,7 @@ class GoodController extends Controller
             $goodsTmp[] = [
             "id" => $v->id,
             "name" => $v->name,
-	    "company" => $v->company,
+	        "company" => $v->company,
             "city" => City::GetCity($v->city_id),
             "price_day" => $v->price_day,
             "price_month" => $v->price_month,
@@ -73,7 +73,7 @@ class GoodController extends Controller
             }
         }else{
             $arry = preg_split("/@/",$leasing_ids);
-            $leasing = Leasing::GetLeasing($arry[0]);
+            $leasing = Leasing::GetLeasing($arry[1]);
             if ($leasing){
                 return $leasing;
             }
