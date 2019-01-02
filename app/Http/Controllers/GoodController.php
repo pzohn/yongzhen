@@ -58,8 +58,8 @@ class GoodController extends Controller
             "price_day" => $good->price_day,
             "price_month" => $good->price_month,
             "leasing_pos" => $pos,
-            "leasing_first" => getLeasingFirst($leasing_ids),
-            "leasing" => getLeasing($leasing_ids)
+            "leasing_first" => $this->getLeasingFirst($leasing_ids),
+            "leasing" => $this->getLeasing($leasing_ids)
         ];
         return $goodTmp;
     }
