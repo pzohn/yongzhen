@@ -92,9 +92,10 @@ class GoodController extends Controller
             $leasing = [];
             foreach ($arry as $v) {
                 $leasing[] = [
-                    "id" => $v
+                    Leasing::GetLeasing($v)
                 ];
             }
+            return $leasing;
         }
     }
 }
