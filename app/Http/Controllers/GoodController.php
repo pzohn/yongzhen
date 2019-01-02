@@ -90,7 +90,7 @@ class GoodController extends Controller
         }else{
             $arry = preg_split("/@/",$leasing_ids);
             $leasing = [];
-            foreach ($arry as $k => $v) {
+            foreach ($arry as $v) {
                 $leasing[] = [
                     "id" => $v
                 ];
