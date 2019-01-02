@@ -41,21 +41,20 @@ class GoodController extends Controller
 
     public function getGood(Request $req) {
         $id = $req->get('id');
-	$good = Good::GetGood($id);
-	return $good;
-	$goodTmp =[
-		"name" => $good->name,
-		"brand" => $good->brand,
-		"register" => $good->register,
-		"number" => $good->number,
-		"product" => $good->product,
-		"use" => $good->use,
-		"product_pic" => $good->product_pic,
-		"detail_pic" => $good->detail_pic,
-		"price" => $good->price,
-		"price_day" => $good->price_day,
-		"price_month" => $good->price_month
-	];
+        $good = Good::GetGood($id);
+        $goodTmp =[
+            "name" => $good->name,
+            "brand" => $good->brand,
+            "register" => $good->register,
+            "number" => $good->number,
+            "product" => $good->product,
+            "use" => $good->use,
+            "product_pic" => $good->product_pic,
+            "detail_pic" => $good->detail_pic,
+            "price" => $good->price,
+            "price_day" => $good->price_day,
+            "price_month" => $good->price_month
+        ];
         return $goodTmp;
     }
 }
