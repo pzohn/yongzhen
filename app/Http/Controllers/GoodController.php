@@ -59,7 +59,7 @@ class GoodController extends Controller
             "price_month" => $good->price_month,
             "leasing_pos" => $pos,
             "leasing_first" => $this->getLeasingFirst($leasing_ids),
-            "leasing" => $this->getLeasing($leasing_ids)
+            "leasings" => $this->getLeasing($leasing_ids)
         ];
         return $goodTmp;
     }
@@ -95,7 +95,10 @@ class GoodController extends Controller
                     Leasing::GetLeasing($v)
                 ];
             }
-            return $leasing;
+            return [
+                "count" => count($arry),
+                "leasings" => $leasing
+            ];
         }
     }
 }
