@@ -85,9 +85,11 @@ class GoodController extends Controller
         $pos = strpos($leasing_ids, '@');
         if ($pos == false){
             $leasing = Leasing::GetLeasing($leasing_ids);
-            if ($leasing){
-                return $leasing;
-            }
+            return [
+                "count" => 1,
+                "leasings" => $leasing
+            ];
+
         }else{
             $arry = preg_split("/@/",$leasing_ids);
             $leasing = [];
