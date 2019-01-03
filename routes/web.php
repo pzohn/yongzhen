@@ -24,3 +24,9 @@ Route::post('/getGoodsByType', 'GoodController@getGoodsByType');
 Route::post('/getLeasings', 'GoodController@getLeasings');
 
 Route::post('/getLeasing', 'GoodController@getLeasing');
+
+Route::post('/onPay', 'PayController@onPay');
+
+Route::post('/onPayBack', 'PayController@onPayBack');
+
+
