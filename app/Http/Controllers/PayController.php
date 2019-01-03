@@ -89,6 +89,7 @@ class PayController extends Controller
                  ];
                  Trade::payInsert($trade);
                  $resultPay = GuzzleHttp:: postXml($urlPay, $data);
+                 \Log::debug("------ trace log ------", [$resultPay]);
                  $decode = $this->decodeXml($resultPay);
                  if ($decode["result_code"] == "SUCCESS")
                  {
