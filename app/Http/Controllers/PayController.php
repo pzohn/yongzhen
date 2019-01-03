@@ -13,7 +13,7 @@ class PayController extends Controller
         $urlLogin = "https://api.weixin.qq.com/sns/jscode2session";
         $paramsLogin = [
         	'appid' => "wx544372e10f473fcb",
-            'secret' => "92b281284e88e85d7144ce91f559c549",
+            'secret' => "0f0fd3b28e42d5216f33ddc783dec651",
             'js_code' => $req->get('js_code'),
             'grant_type' => "authorization_code",
         ];
