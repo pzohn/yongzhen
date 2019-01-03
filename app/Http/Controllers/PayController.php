@@ -136,7 +136,7 @@ class PayController extends Controller
     }
 
     protected function createSign($stringA) {
-        $stringSignTemp = $stringA . "&key=xjyz2016zhangbaoshang2017liulei2018";
+        $stringSignTemp = $stringA . "&key=xjyz2016zhangbaoshang2017liulei6";
         $sign = strtoupper(md5($stringSignTemp));
         return $sign;
     }
@@ -190,7 +190,7 @@ class PayController extends Controller
         foreach ($params as $k => $v) {
             $str .= "&".$k ."=" . $v;
         }
-        $str .= "&key=xjyz2016zhangbaoshang2017liulei2018";
+        $str .= "&key=xjyz2016zhangbaoshang2017liulei6";
         $str = ltrim($str, "&");
         $sign_strTmp = strtoupper(md5($str));
         $updateTrade;
