@@ -30,7 +30,7 @@ class PayController extends Controller
 
             if ($openid && $session_key) {
                 $details = $req->get('details');
-                $arry = preg_split("/@/",$details);
+                $arry  = preg_split("/@/",$details);
                 $urlPay = "https://api.mch.weixin.qq.com/pay/unifiedorder";
                 $params = [
                     'appid' => $paramsLogin["appid"],
