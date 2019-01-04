@@ -115,7 +115,7 @@ class GoodController extends Controller
     public function getShows(Request $req) {
         $type = $req->get('type');
         $shows = Show::GetShows($type);
-        $count = Good::GetShowsCount($type);
+        $count = Show::GetShowsCount($type);
         $showsmp = [];
         foreach ($shows as $k => $v) {
             $showsmp[] = [
