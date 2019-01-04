@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Good;
 use App\Models\City;
 use App\Models\Leasing;
+use App\Models\Show;
 
 class GoodController extends Controller
 {
@@ -109,5 +110,24 @@ class GoodController extends Controller
         $id = $req->get('id');
         $leasing = Leasing::GetLeasing($id);
         return $leasing;
+    }
+
+    public function getShows(Request $req) {
+        $type = $req->get('type');
+        $shows = Show::GetShows($type);
+        $count = Good::GetShowsCount($type);
+        $showsmp = [];
+        foreach ($shows as $k => $v) {
+            $showsmp[] = [
+            "id" => $v->good_id,
+            "name" => Good::GetGood($v->good_id)->name,
+	        "product_pic" => Good::GetGood($v->good_id)->product_pic,
+            "price_day" => Good::GetGood($v->good_id)->price_day
+            ];
+        }
+        return [
+            "count" => $count,
+            "shows" => $showsmp
+        ];
     }
 }
