@@ -112,13 +112,23 @@ class GoodController extends Controller
         return $leasing;
     }
 
-    public function getShows(Request $req) {
-        $type = $req->get('type');
-        $shows = Show::GetShows($type);
-        $count = Show::GetShowsCount($type);
-        $showsmp = [];
-        foreach ($shows as $k => $v) {
-            $showsmp[] = [
+    public function getShows() {
+        $good_shows = Show::GetShows(1);
+        $good_count = Show::GetShowsCount(1);
+        $good_showsmp = [];
+        foreach ($good_shows as $k => $v) {
+            $good_showsmp[] = [
+            "id" => $v->good_id,
+            "name" => Good::GetGood($v->good_id)->name,
+	        "product_pic" => Good::GetGood($v->good_id)->product_pic,
+            "price_day" => Good::GetGood($v->good_id)->price_day
+            ];
+        }
+        $hot_shows = Show::GetShows(2);
+        $hot_count = Show::GetShowsCount(2);
+        $hot_showsmp = [];
+        foreach ($hot_shows as $k => $v) {
+            $hot_showsmp[] = [
             "id" => $v->good_id,
             "name" => Good::GetGood($v->good_id)->name,
 	        "product_pic" => Good::GetGood($v->good_id)->product_pic,
@@ -126,8 +136,10 @@ class GoodController extends Controller
             ];
         }
         return [
-            "count" => $count,
-            "shows" => $showsmp
+            "good_count" => $good_count,
+            "good_shows" => $good_showsmp,
+            "hot_count" => $hot_count,
+            "hot_shows" => $hot_showsmp
         ];
     }
 }
