@@ -62,12 +62,12 @@ class UserController extends Controller
         $detail_id = $req->get('detail_id');
         $user = User::GetUser($login_id)->collect_ids;
         if (!$user)
-            return false;
+            return 0;
         $collect_ids = $user->collect_ids;
         if ($collect_ids == "")
-            return false;
+            return 0;
         $ldetail_id_str = strval($detail_id);
         $pos = strpos($collect_ids, $ldetail_id_str);
-        return $pos;
+        return 1;
     }
 }
