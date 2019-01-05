@@ -33,6 +33,6 @@ Route::get('/getShows', 'GoodController@getShows');
 
 Route::post('/getGoodsByName', 'GoodController@getGoodsByName');
 
-Route::post('/login', 'GoodController@login');
+Route::post('/login', 'UserController@login');
 
 
