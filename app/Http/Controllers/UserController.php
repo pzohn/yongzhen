@@ -68,7 +68,7 @@ class UserController extends Controller
             return 0;
         $ldetail_id_str = strval($detail_id);
         $pos = strpos($collect_ids, $ldetail_id_str);
-        if ($pos)
+        if ($pos == true)
             return 1;
         else
             return 0;
