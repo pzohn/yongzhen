@@ -71,6 +71,10 @@ class UserController extends Controller
         if ($pos == true)
             return 333;
         else
-            return 555;
+            return [
+                $detail_id_str,
+                $pos,
+                $collect_ids
+            ];
     }
 }
