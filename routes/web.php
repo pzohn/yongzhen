@@ -31,4 +31,6 @@ Route::post('/onPayBack', 'PayController@onPayBack');
 
 Route::get('/getShows', 'GoodController@getShows');
 
+Route::post('/getGoodsByName', 'GoodController@getGoodsByName');
+
 

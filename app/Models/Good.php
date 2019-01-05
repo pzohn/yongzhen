@@ -44,4 +44,16 @@ class  Good extends Model {
             return $good;
         }
     }
+
+    public static function GetGoodsByName($name) {
+        $goods = Good::where('name','like', '%'.$name.'%')->get();
+        if ($goods) {
+            return $goods;
+        }
+    }
+
+    public static function GetGoodsCountByName($name) {
+        $count = Good::where('name','like', '%'.$name.'%')->get()->count();
+        return $count;
+    }
 }

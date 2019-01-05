@@ -142,4 +142,26 @@ class GoodController extends Controller
             "hot_shows" => $hot_showsmp
         ];
     }
+
+    public function getGoodsByName(Request $req) {
+        $name = $req->get('name');
+        $goods = Good::GetGoodsByName($name);
+        $count = Good::GetGoodsCountByName($name);
+        $goodsTmp = [];
+        foreach ($goods as $k => $v) {
+            $goodsTmp[] = [
+            "id" => $v->id,
+            "name" => $v->name,
+	        "company" => $v->company,
+            "city" => City::GetCity($v->city_id),
+            "price_day" => $v->price_day,
+            "price_month" => $v->price_month,
+            "product_pic" => $v->product_pic
+            ];
+        }
+        return [
+            "count" => $count,
+            "goods" => $goodsTmp
+        ];
+    }
 }
