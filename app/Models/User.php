@@ -37,4 +37,13 @@ class  User extends Model {
         $user->save();
         return $user;
     }
+
+    public static function CollectUpdate($id,$collect_ids) {
+        $user = Trade::where("id", $id)->first();
+        if ($user) {
+            $user->collect_ids = $collect_ids;
+            $user->update();
+            return $user;
+        }
+    }
 }

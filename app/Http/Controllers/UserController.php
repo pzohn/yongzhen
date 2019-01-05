@@ -25,4 +25,44 @@ class UserController extends Controller
         $user = User::UserInsert($req);
         return $user;
     }
+
+    public function collect(Request $req) {
+        $collect_flag = $req->get('collect_flag');
+        $login_id = $req->get('login_id');
+        $detail_id = $req->get('detail_id');
+        $collect_ids = User::GetUser($login_id)->collect_ids;
+        $collect_idsTmp = "";
+        if ($collect_flag){
+            if ($collect_ids == ""){
+                $collect_idsTmp = strval($detail_id);
+            }else{
+                $collect_idsTmp = $collect_ids . "@" . strval($detail_id);
+            }
+        }else{
+            if (strpos($collect_ids, '@')){
+                $arry = preg_split("/@/",$collect_ids);
+                $arryTmp = [];
+                foreach ($arry as $k => $v) {
+                    $id = intval($v);
+                    if ($id != $detail_id){
+                        $arryTmp[] = $v;
+                    }
+                    $collect_idsTmp = implode("@",$arryTmp);
+                }
+                $collect_idsTmp = strval($detail_id);
+            }else{
+                $collect_idsTmp = "";
+            }
+        }
+        return User::CollectUpdate($login_id,$collect_idsTmp);
+    }
+
+    public function iscollect(Request $req) {
+        $login_id = $req->get('login_id');
+        $detail_id = $req->get('detail_id');
+        $collect_ids = User::GetUser($login_id)->collect_ids;
+        $ldetail_id_str = strval($detail_id);
+        $pos = strpos($collect_ids, $ldetail_id_str);
+        return $pos;
+    }
 }
