@@ -25,4 +25,16 @@ class  User extends Model {
         }
         return $user;
     }
+
+    public static function UserInsert($params) {
+        $user = new self;
+        $user->name = array_get($params,"name");
+        $user->address = array_get($params,"address");
+        $user->phone = array_get($params,"phone");
+        $user->passwd = array_get($params,"passwd");
+        $user->age = array_get($params,"age");
+        $user->sex = array_get($params,"sex");
+        $user->save();
+        return $user;
+    }
 }

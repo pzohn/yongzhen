@@ -35,4 +35,6 @@ Route::post('/getGoodsByName', 'GoodController@getGoodsByName');
 
 Route::post('/login', 'UserController@login');
 
+Route::post('/registor', 'UserController@registor');
+
 

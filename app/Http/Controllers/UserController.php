@@ -20,4 +20,9 @@ class UserController extends Controller
         $user = User::UserLogin($phone,$passwd);
         return $user;
     }
+
+    public function registor(Request $req) {
+        $user = User::UserInsert($req);
+        return $user;
+    }
 }
