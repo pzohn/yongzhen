@@ -13,4 +13,16 @@ class  User extends Model {
             return $user;
         }
     }
+
+    public static function UserLogin($phone,$passwd) {
+        $user = User::where("phone", $phone)->first();
+        if (!$user) {
+            return 0;
+        }
+        $user = User::where("phone", $phone)->where("passwd", $passwd)->first();
+        if (!$user) {
+            return 1;
+        }
+        return $user;
+    }
 }
