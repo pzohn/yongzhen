@@ -15,7 +15,7 @@ class UserController extends Controller
     }
 
     public function login(Request $req) {
-        $phone = $req->get('id');
+        $phone = $req->get('phone');
         $passwd = $req->get('passwd');
         $user = User::UserLogin($phone,$passwd);
         return $user;
