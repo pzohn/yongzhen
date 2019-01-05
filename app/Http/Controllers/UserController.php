@@ -60,7 +60,12 @@ class UserController extends Controller
     public function iscollect(Request $req) {
         $login_id = $req->get('login_id');
         $detail_id = $req->get('detail_id');
-        $collect_ids = User::GetUser($login_id)->collect_ids;
+        $user = User::GetUser($login_id)->collect_ids;
+        if (!$user)
+            return false;
+        $collect_ids = $user->collect_ids;
+        if ($collect_ids == "")
+            return false;
         $ldetail_id_str = strval($detail_id);
         $pos = strpos($collect_ids, $ldetail_id_str);
         return $pos;
