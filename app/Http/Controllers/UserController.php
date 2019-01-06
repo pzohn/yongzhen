@@ -49,7 +49,6 @@ class UserController extends Controller
                     }
                     $collect_idsTmp = implode("@",$arryTmp);
                 }
-                $collect_idsTmp = strval($detail_id);
             }else{
                 $collect_idsTmp = "";
             }
