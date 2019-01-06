@@ -59,7 +59,7 @@ class  Trade extends Model {
 
     public static function getTradeStatus($out_trade_no) {
         $trade = Trade::where("out_trade_no", $out_trade_no)->first();
-        if ($trade)
+        if (!$trade)
             return 0;
         if (($trade->pay_status == 1) && ($trade->get_status == 0)){
             return 2;
