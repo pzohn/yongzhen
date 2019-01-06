@@ -39,4 +39,6 @@ Route::post('/registor', 'UserController@registor');
 
 Route::post('/collect', 'UserController@collect');
 
+Route::post('/iscollect', 'UserController@iscollect');
+
 
