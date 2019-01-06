@@ -64,15 +64,27 @@ class UserController extends Controller
         $collect_ids = $user->collect_ids;
         if ($collect_ids == "")
             return 0;
-        $detail_id_str = strval($detail_id);
-        $pos = strpos($collect_ids, $detail_id_str);
-        if ($pos !== false)
-            return [
-                $collect_ids,
-                $detail_id_str,
-                $pos
-            ];
-        else
-            return 0;
+        if (strpos($collect_ids, '@') !== false){
+            $arry = preg_split("/@/",$collect_ids);
+            $flag = false;
+            foreach ($arry as $k => $v) {
+                $id = intval($v);
+                if ($id == $detail_id){
+                    $flag = true;
+                }
+            }
+            if ($flag){
+                return 1;
+            }else{
+                return 0;
+            }
+        }else{
+            $id = intval($collect_ids);
+            if ($id == $detail_id){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
     }
 }
