@@ -57,6 +57,7 @@ class UserController extends Controller
                 $collect_idsTmp = "";
             }
         }
+        User::CollectUpdate($login_id,$collect_idsTmp);
         return 1;
     }
 
