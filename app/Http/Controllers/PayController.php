@@ -225,7 +225,7 @@ class PayController extends Controller
         foreach ($trades as $k => $v) {
             $tradesTmp[] = [
             "out_trade_no" => $v->out_trade_no,
-            "datetime" => $v->created_at,
+            "date" => date("Y-m-d",$v->created_at->date),
 	        "body" => $v->body,
             "status" => Trade::getTradeStatus($v->out_trade_no),
             "total_fee" => $v->total_fee,
