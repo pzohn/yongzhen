@@ -30,6 +30,9 @@ class UserController extends Controller
         $collect_flag = $req->get('collect_flag');
         $login_id = $req->get('login_id');
         $detail_id = $req->get('detail_id');
+        $iscollect = $this->iscollect($login_id,$detail_id);
+        if ($iscollect == $collect_flag)
+            return 0;
         $collect_ids = User::GetUser($login_id)->collect_ids;
         $collect_idsTmp = "";
         if ($collect_flag){
@@ -54,7 +57,7 @@ class UserController extends Controller
             }
         }
         User::CollectUpdate($login_id,$collect_idsTmp);
-        return $this->iscollect($login_id,$detail_id);
+        return 1;
     }
 
     public function iscollect($login_id,$detail_id) {
