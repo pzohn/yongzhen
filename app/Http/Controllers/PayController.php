@@ -223,15 +223,19 @@ class PayController extends Controller
         $trades = Trade::getTrades($phone,$type);
         $tradesTmp = [];
         foreach ($trades as $k => $v) {
+	    \Log::debug("----------", [$v]);
+	    $dt = $v->created_at;
+	    \Log::debug("----------", [$dt]);
             $tradesTmp[] = [
             "out_trade_no" => $v->out_trade_no,
-            "date" => $v->created_at,
-	        "body" => $v->body,
+            "date" => $v->created_at->format('Y-m-d H:i:s'),
+	    "body" => $v->body,
             "status" => Trade::getTradeStatus($v->out_trade_no),
             "total_fee" => $v->total_fee,
             "leasing_name" => Leasing::GetLeasing($v->leasing_id)->name
             ];
         }
+	\Log::debug("---------", $tradesTmp);
         return [
             "count" => count($tradesTmp),
             "trades" => $tradesTmp
