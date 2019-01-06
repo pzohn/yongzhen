@@ -122,7 +122,7 @@ class UserController extends Controller
         }else{
             $arry = preg_split("/@/",$collect_ids);
             $goods = [];
-            foreach ($goods as $k => $v) {
+            foreach ($arry as $k => $v) {
                 $id = intval($v);
                 $good = Good::GetGood($id);
                 $goods[] = [
