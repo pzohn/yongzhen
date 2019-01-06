@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Libs\GuzzleHttp;
+use App\Models\Good;
+use App\Models\City;
 
 class UserController extends Controller
 {
@@ -90,6 +91,54 @@ class UserController extends Controller
             }else{
                 return 0;
             }
+        }
+    }
+
+    public function getCollect(Request $req) {
+        $login_id = $req->get('login_id');
+        $user = User::GetUser($login_id);
+        if (!$user)
+            return 0;
+        $collect_ids = $user->collect_ids;
+        if ($collect_ids == "")
+            return 0;
+        $pos = strpos($collect_ids, '@');
+        if ($pos == false){
+            $id = intval($collect_ids);
+            $good = Good::GetGood($id);
+            $goods = [
+                "id" => $good->id,
+                "name" => $good->name,
+                "company" => $good->company,
+                "city" => City::GetCity($good->city_id),
+                "price_day" => $good->price_day,
+                "price_month" => $good->price_month,
+                "product_pic" => $good->product_pic
+            ];
+            return [
+                "count" => $count,
+                "goods" => $goods
+            ];
+        }else{
+            $arry = preg_split("/@/",$collect_ids);
+            $goods = [];
+            foreach ($goods as $k => $v) {
+                $id = intval($v);
+                $good = Good::GetGood($id);
+                $goods[] = [
+                    "id" => $good->id,
+                    "name" => $good->name,
+                    "company" => $good->company,
+                    "city" => City::GetCity($good->city_id),
+                    "price_day" => $good->price_day,
+                    "price_month" => $good->price_month,
+                    "product_pic" => $good->product_pic
+                ];
+            }
+            return [
+                "count" => count($arry),
+                "goods" => $goods
+            ];
         }
     }
 }
