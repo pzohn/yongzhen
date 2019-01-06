@@ -228,7 +228,7 @@ class PayController extends Controller
 	    \Log::debug("----------", [$dt]);
             $tradesTmp[] = [
             "out_trade_no" => $v->out_trade_no,
-            "date" => $v->created_at->format('Y-m-d H:i:s'),
+            "date" => $v->created_at->format('Y-m-d'),
 	    "body" => $v->body,
             "status" => Trade::getTradeStatus($v->out_trade_no),
             "total_fee" => $v->total_fee,
