@@ -116,7 +116,7 @@ class UserController extends Controller
                 "product_pic" => $good->product_pic
             ];
             return [
-                "count" => $count,
+                "count" => 1,
                 "goods" => $goods
             ];
         }else{
