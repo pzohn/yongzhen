@@ -44,7 +44,7 @@ class UserController extends Controller
                 $arryTmp = [];
                 foreach ($arry as $k => $v) {
                     $id = intval($v);
-                    if ($id != $detail_id){
+                    if ($id !== $detail_id){
                         $arryTmp[] = $v;
                     }
                     $collect_idsTmp = implode("@",$arryTmp);
