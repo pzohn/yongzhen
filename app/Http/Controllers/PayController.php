@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Libs\GuzzleHttp;
 use App\Models\Trade;
+use App\Models\Leasing;
 
 class PayController extends Controller
 {
@@ -213,6 +214,27 @@ class PayController extends Controller
             "package" => "prepay_id=" . $decode['prepay_id'],
             "signType" => "MD5",
             "paySign" => $resign,
+        ];
+    }
+
+    public function getTrades(Request $req) {
+        $phone = $req->get('phone');
+        $type = $req->get('type');
+        $trades = Trade::getTrades($phone,$type);
+        $tradesTmp = [];
+        foreach ($trades as $k => $v) {
+            $tradesTmp[] = [
+            "out_trade_no" => $v->out_trade_no,
+            "datetime" => $v->created_at,
+	        "body" => $v->body,
+            "status" => Trade::getTradeStatus($v->out_trade_no),
+            "total_fee" => $v->total_fee,
+            "leasing_name" => Leasing::GetLeasing($v->leasing_id)->name
+            ];
+        }
+        return [
+            "count" => count($tradesTmp),
+            "trades" => $tradesTmp
         ];
     }
 }
