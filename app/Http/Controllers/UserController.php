@@ -39,7 +39,7 @@ class UserController extends Controller
                 $collect_idsTmp = $collect_ids . "@" . strval($detail_id);
             }
         }else{
-            if (strpos($collect_ids, '@')){
+            if (strpos($collect_ids, '@') !== false){
                 $arry = preg_split("/@/",$collect_ids);
                 $arryTmp = [];
                 foreach ($arry as $k => $v) {
