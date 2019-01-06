@@ -39,19 +39,19 @@ class  Trade extends Model {
     }
 
     public static function getTrades($phone,$type) {
-        if ($type = 1){
+        if ($type == 1){
             $trade = Trade::where("phone", $phone)->where("pay_status", 1)->get();
             return $trade;
         }
-        else if ($type = 2){
+        else if ($type == 2){
             $trade = Trade::where("phone", $phone)->where("pay_status", 1)->where("get_status", 0)->get();
             return $trade;
         }
-        else if ($type = 3){
+        else if ($type == 3){
             $trade = Trade::where("phone", $phone)->where("pay_status", 1)->where("get_status", 1)->where("back_status", 0)->get();
             return $trade;
         }
-        else if ($type = 4){
+        else if ($type == 4){
             $trade = Trade::where("phone", $phone)->where("pay_status", 1)->where("get_status", 1)->where("back_status", 1)->get();
             return $trade;
         }
