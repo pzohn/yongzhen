@@ -53,7 +53,8 @@ class UserController extends Controller
                 $collect_idsTmp = "";
             }
         }
-        return User::CollectUpdate($login_id,$collect_idsTmp);
+        User::CollectUpdate($login_id,$collect_idsTmp);
+        return $this->iscollect($login_id,$detail_id);
     }
 
     public function iscollect($login_id,$detail_id) {
