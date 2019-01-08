@@ -35,7 +35,6 @@ class  Address extends Model {
             $address->province = array_get($params,"province");
             $address->city = array_get($params,"city");
             $address->area = array_get($params,"area");
-            $address->login_id = array_get($params,"login_id");
             $address->detail = array_get($params,"detail");
             $address->update();
             return $address;

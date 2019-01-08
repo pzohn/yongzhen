@@ -202,8 +202,7 @@ class UserController extends Controller
             "province" => $req->get('province'),
             "city" => $req->get('city'),
             "area" => $req->get('area'),
-            "detail" => $req->get('detail'),
-            "login_id" => $req->get('login_id')
+            "detail" => $req->get('detail')
         ]; 
         $address = Address::addressUpdate($params);
         return $address;
