@@ -149,7 +149,7 @@ class UserController extends Controller
         if (!$user)
             return 0;
         $address_ids = $user->address_ids;
-        if ($collect_ids == "")
+        if ($address_ids == "")
             return 0;
         $address_defult_id = $user->address_defult_id;
         $pos = strpos($address_ids, '@');
@@ -171,7 +171,7 @@ class UserController extends Controller
                 "addresses" => $addresses
             ];
         }else{
-            $arry = preg_split("/@/",$collect_ids);
+            $arry = preg_split("/@/",$address_ids);
             $addresses = [];
             foreach ($arry as $k => $v) {
                 $id = intval($v);
