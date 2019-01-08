@@ -220,8 +220,8 @@ class UserController extends Controller
             "login_id" => $req->get('login_id')
         ]; 
         $address = Address::addressInsert($params);
-        $id = $address->$id;
-        $login_id = $address->$login_id;
+        $id = $address->id;
+        $login_id = $address->login_id;
         
         $address_ids = User::GetUser($login_id)->address_ids;
         $address_idsTmp = "";
