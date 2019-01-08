@@ -45,4 +45,12 @@ Route::post('/getCollect', 'UserController@getCollect');
 
 Route::post('/getTrades', 'PayController@getTrades');
 
+Route::post('/getAddresses', 'UserController@getAddresses');
+
+Route::post('/updateAddress', 'UserController@updateAddress');
+
+Route::post('/insertAddress', 'UserController@insertAddress');
+
+Route::post('/delAddress', 'UserController@delAddress');
+
 

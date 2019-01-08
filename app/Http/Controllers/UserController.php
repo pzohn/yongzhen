@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Good;
 use App\Models\City;
+use App\Models\Address;
 
 class UserController extends Controller
 {
@@ -140,5 +141,135 @@ class UserController extends Controller
                 "goods" => $goods
             ];
         }
+    }
+
+    public function getAddresses(Request $req) {
+        $login_id = $req->get('login_id');
+        $user = User::GetUser($login_id);
+        if (!$user)
+            return 0;
+        $address_ids = $user->address_ids;
+        if ($collect_ids == "")
+            return 0;
+        $address_defult_id = $user->address_defult_id;
+        $pos = strpos($address_ids, '@');
+        if ($pos == false){
+            $id = intval($address_ids);
+            $address = Address::GetAddress($id);
+            $addresses = [
+                "id" => $address->id,
+                "name" => $address->name,
+                "phone" => $address->phone,
+                "province" => $address->province,
+                "city" => $address->city,
+                "area" => $address->area,
+                "detail" => $address->detail
+            ];
+            return [
+                "count" => 1,
+                "address_defult_id" => $id,
+                "addresses" => $addresses
+            ];
+        }else{
+            $arry = preg_split("/@/",$collect_ids);
+            $addresses = [];
+            foreach ($arry as $k => $v) {
+                $id = intval($v);
+                $address = Address::GetAddress($id);
+                $addresses[] = [
+                    "id" => $address->id,
+                    "name" => $address->name,
+                    "phone" => $address->phone,
+                    "province" => $address->province,
+                    "city" => $address->city,
+                    "area" => $address->area,
+                    "detail" => $address->detail
+                ];
+            }
+            return [
+                "count" => count($arry),
+                "address_defult_id" => $address_defult_id,
+                "addresses" => $addresses
+            ];
+        }
+    }
+
+    public function updateAddress(Request $req) {
+        $params = [
+            "id" => $req->get('id'),
+            "name" => $req->get('name'),
+            "phone" => $req->get('phone'),
+            "province" => $req->get('province'),
+            "city" => $req->get('city'),
+            "area" => $req->get('area'),
+            "detail" => $req->get('detail'),
+            "login_id" => $req->get('login_id')
+        ]; 
+        $address = Address::addressUpdate($params);
+        return $address;
+    }
+
+    public function insertAddress(Request $req) {
+        $params = [
+            "name" => $req->get('name'),
+            "phone" => $req->get('phone'),
+            "province" => $req->get('province'),
+            "city" => $req->get('city'),
+            "area" => $req->get('area'),
+            "detail" => $req->get('detail'),
+            "login_id" => $req->get('login_id')
+        ]; 
+        $address = Address::addressInsert($params);
+        $id = $address->$id;
+        $login_id = $address->$login_id;
+        
+        $address_ids = User::GetUser($login_id)->address_ids;
+        $address_idsTmp = "";
+        if ($address_ids == ""){
+            $address_idsTmp = strval($id);
+        }else{
+            if (strpos($address_ids, '@') !== false){
+                $arry = preg_split("/@/",$address_ids);
+                $b = false;
+                foreach ($arry as $k => $v) {
+                    $idtmp = intval($v);
+                    if ($idtmp == $id){
+                        $b = true;
+                        break;
+                    }
+                    if ($b == false){
+                        $address_idsTmp = $address_ids . "@" . strval($id);
+                    }
+                }
+            }else{
+                $address_idsTmp = $address_ids . "@" . strval($id);
+            }
+        }
+        User::AddressUpdate($login_id,$address_idsTmp);
+    }
+
+    public function delAddress(Request $req) {
+        $id = $req->get('id');
+        $login_id = $req->get('login_id');
+        Address::addressDel($id);
+
+        $address_ids = User::GetUser($login_id)->address_ids;
+        $address_idsTmp = "";
+        if ($address_ids != ""){
+            if (strpos($address_ids, '@') !== false){
+                $arry = preg_split("/@/",$address_ids);
+                $arryTmp = [];
+                foreach ($arry as $k => $v) {
+                    $idtmp = intval($v);
+                    if ($idtmp != $id){
+                        $arryTmp[] = $v;
+                    }
+                    $address_idsTmp = implode("@",$arryTmp);
+                }
+            }else if (intval($address_ids == $id)){
+                $address_idsTmp = "";
+            }
+        }
+        User::AddressUpdate($login_id,$address_idsTmp);
     }
 }

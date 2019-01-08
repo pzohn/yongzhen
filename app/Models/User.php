@@ -46,4 +46,13 @@ class  User extends Model {
             return $user;
         }
     }
+
+    public static function AddressUpdate($id,$address_ids) {
+        $user = User::where("id", $id)->first();
+        if ($user) {
+            $user->address_ids = $address_ids;
+            $user->update();
+            return $user;
+        }
+    }
 }
