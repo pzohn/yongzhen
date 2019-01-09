@@ -246,6 +246,9 @@ class UserController extends Controller
             }
         }
         User::AddressUpdate($login_id,$address_idsTmp);
+        if ($req->get('default_flag') == true){
+            User::AddressDefaultUpdate($login_id,$id);
+        }
     }
 
     public function delAddress(Request $req) {
