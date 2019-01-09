@@ -277,4 +277,11 @@ class UserController extends Controller
         $address = Address::GetAddress($id);
         return $address;
     }
+
+    public function updateDefaultAddress(Request $req) {
+        $id = $req->get('id');
+        $login_id = $req->get('login_id');
+        $user = User::AddressDefaultUpdate($login_id,$id);
+        return $user;
+    }
 }

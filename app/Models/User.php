@@ -55,4 +55,13 @@ class  User extends Model {
             return $user;
         }
     }
+
+    public static function AddressDefaultUpdate($id,$address_defult_id) {
+        $user = User::where("id", $id)->first();
+        if ($user) {
+            $user->address_defult_id = $address_defult_id;
+            $user->update();
+            return $user;
+        }
+    }
 }

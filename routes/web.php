@@ -55,4 +55,6 @@ Route::post('/insertAddress', 'UserController@insertAddress');
 
 Route::post('/delAddress', 'UserController@delAddress');
 
+Route::post('/updateDefaultAddress', 'UserController@updateDefaultAddress');
+
 
