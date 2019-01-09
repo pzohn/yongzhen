@@ -271,7 +271,7 @@ class UserController extends Controller
         }
         $user = User::AddressUpdate($login_id,$address_idsTmp);
         if ($user->address_defult_id == $id){
-            $user = User::AddressDefaultUpdate($login_id,$id);
+            $user = User::AddressDefaultUpdate($login_id,0);
             return $user;
         }
     }
