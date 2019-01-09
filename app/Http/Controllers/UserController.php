@@ -269,7 +269,11 @@ class UserController extends Controller
                 $address_idsTmp = "";
             }
         }
-        User::AddressUpdate($login_id,$address_idsTmp);
+        $user = User::AddressUpdate($login_id,$address_idsTmp);
+        if ($user->address_defult_id == $id){
+            $user = User::AddressDefaultUpdate($login_id,$id);
+            return $user;
+        }
     }
 
     public function getAddress(Request $req) {
