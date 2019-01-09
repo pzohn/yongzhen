@@ -167,7 +167,7 @@ class UserController extends Controller
             ];
             return [
                 "count" => 1,
-                "address_defult_id" => $id,
+                "address_defult_id" => $address_defult_id,
                 "addresses" => $addresses
             ];
         }else{
@@ -226,6 +226,7 @@ class UserController extends Controller
         $address_idsTmp = "";
         if ($address_ids == ""){
             $address_idsTmp = strval($id);
+            User::AddressDefaultUpdate($login_id,$id);
         }else{
             if (strpos($address_ids, '@') !== false){
                 $arry = preg_split("/@/",$address_ids);
