@@ -64,4 +64,15 @@ class  User extends Model {
             return $user;
         }
     }
+
+    public static function SaveUser($params) {
+        $user = User::where("id", array_get($params,"id"))->first();
+        if ($user) {
+            $user->name = array_get($params,"name");
+            $user->age = array_get($params,"age");
+            $user->address = array_get($params,"address");
+            $user->update();
+            return $user;
+        }
+    }
 }

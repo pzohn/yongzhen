@@ -292,4 +292,15 @@ class UserController extends Controller
         $user = User::AddressDefaultUpdate($login_id,$id);
         return $user;
     }
+
+    public function userSave(Request $req) {
+        $params = [
+            "name" => $req->get('name'),
+            "id" => $req->get('id'),
+            "age" => $req->get('age'),
+            "address" => $req->get('address')
+        ]; 
+        $user = User::SaveUser($params);
+        return $user;
+    }
 }
