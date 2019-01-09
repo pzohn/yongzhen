@@ -47,6 +47,8 @@ Route::post('/getTrades', 'PayController@getTrades');
 
 Route::post('/getAddresses', 'UserController@getAddresses');
 
+Route::post('/getAddress', 'UserController@getAddress');
+
 Route::post('/updateAddress', 'UserController@updateAddress');
 
 Route::post('/insertAddress', 'UserController@insertAddress');

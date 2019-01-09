@@ -271,4 +271,10 @@ class UserController extends Controller
         }
         User::AddressUpdate($login_id,$address_idsTmp);
     }
+
+    public function getAddress(Request $req) {
+        $id = $req->get('id');
+        $address = Address::GetAddress($id);
+        return $address;
+    }
 }
