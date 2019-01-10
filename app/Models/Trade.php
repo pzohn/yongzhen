@@ -72,4 +72,11 @@ class  Trade extends Model {
             return 4;
         }
     }
+
+    public static function getTrade($id) {
+        $trade = Trade::where("id", $id)->first();
+        if ($trade) {
+            return $trade;
+        }
+    }
 }

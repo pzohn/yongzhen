@@ -233,7 +233,8 @@ class PayController extends Controller
 	         "body" => $v->body,
             "status" => Trade::getTradeStatus($v->out_trade_no),
             "total_fee" => $v->total_fee,
-            "leasing_name" => Leasing::GetLeasing($v->leasing_id)->name
+            "leasing_name" => Leasing::GetLeasing($v->leasing_id)->name,
+            "id" => $v->id
             ];
         }
 	\Log::debug("---------", $tradesTmp);
@@ -241,5 +242,11 @@ class PayController extends Controller
             "count" => count($tradesTmp),
             "trades" => $tradesTmp
         ];
+    }
+
+    public function getTrade(Request $req) {
+        $id = $req->get('id');
+        $trade = Trade::getTrade($id);
+        return $trade;
     }
 }

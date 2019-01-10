@@ -45,6 +45,8 @@ Route::post('/getCollect', 'UserController@getCollect');
 
 Route::post('/getTrades', 'PayController@getTrades');
 
+Route::post('/getTrade', 'PayController@getTrade');
+
 Route::post('/getAddresses', 'UserController@getAddresses');
 
 Route::post('/getAddress', 'UserController@getAddress');
