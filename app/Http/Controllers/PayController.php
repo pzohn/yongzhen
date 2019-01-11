@@ -269,7 +269,7 @@ class PayController extends Controller
         return [
             "id" => $trade->id,
             "out_trade_no" => $trade->out_trade_no,
-            "updated_at" => $trade->updated_at->format('Y-m-d'),
+            "created_at" => $trade->created_at->format('Y-m-d'),
             "address" => $addressStr,
             "total_fee" => $trade->total_fee,
             "type" => $type,
