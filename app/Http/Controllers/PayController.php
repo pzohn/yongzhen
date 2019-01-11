@@ -252,7 +252,7 @@ class PayController extends Controller
         $addressStr = "";
         if ($trade->address_id != 0){
             $address = Address::GetAddress($trade->address_id);
-            $addressStr = $address->province . " " . $address->city . " " . $address->area . " " . $address->detail;
+            $addressStr = $address->province . $address->city . $address->area . $address->detail;
         }
         $type = 0;
         $day = 0;
