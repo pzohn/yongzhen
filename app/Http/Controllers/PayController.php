@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Libs\GuzzleHttp;
 use App\Models\Trade;
 use App\Models\Leasing;
+use App\Models\Address;
+
 
 class PayController extends Controller
 {
@@ -247,6 +249,31 @@ class PayController extends Controller
     public function getTrade(Request $req) {
         $id = $req->get('id');
         $trade = Trade::getTrade($id);
-        return $trade;
+        $address = "";
+        if ($trade->address_id != 0){
+            $address = Address::GetAddress($trade->address_id);
+        }
+        $type = 0;
+        $day = 0;
+        $details = $trade->details;
+        if ($details != ""){
+            $arry = preg_split("/@/",$details);
+            if ($arry[0] == 2){
+                $type = 2;
+                $day = $arry[2];
+            }else if ($arry[0] == 1){
+                $type = 1;
+            }
+        }
+        return [
+            "id" => $trade->id,
+            "out_trade_no" => $trade->out_trade_no,
+            "updated_at" => $trade->updated_at,
+            "address" => $address,
+            "total_fee" => $trade->total_fee,
+            "type" => $type,
+            "day" => $day,
+            "status" => Trade::getTradeStatus($trade->out_trade_no)
+        ];
     }
 }
