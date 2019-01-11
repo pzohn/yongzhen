@@ -249,9 +249,10 @@ class PayController extends Controller
     public function getTrade(Request $req) {
         $id = $req->get('id');
         $trade = Trade::getTrade($id);
-        $address = "";
+        $addressStr = "";
         if ($trade->address_id != 0){
             $address = Address::GetAddress($trade->address_id);
+            $addressStr = $address->province + " " + $address->city + " " + $address->area + " " + $address->detail;
         }
         $type = 0;
         $day = 0;
@@ -268,8 +269,8 @@ class PayController extends Controller
         return [
             "id" => $trade->id,
             "out_trade_no" => $trade->out_trade_no,
-            "updated_at" => $trade->updated_at,
-            "address" => $address,
+            "updated_at" => $trade->updated_at->format('Y-m-d'),
+            "address" => $addressStr,
             "total_fee" => $trade->total_fee,
             "type" => $type,
             "day" => $day,
