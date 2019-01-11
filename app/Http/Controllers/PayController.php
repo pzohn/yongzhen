@@ -7,6 +7,7 @@ use App\Libs\GuzzleHttp;
 use App\Models\Trade;
 use App\Models\Leasing;
 use App\Models\Address;
+use App\Models\Good;
 
 
 class PayController extends Controller
@@ -267,6 +268,14 @@ class PayController extends Controller
                 $type = 1;
             }
         }
+
+        $body_id = $trade->body_id;
+        $good = Good::GetGood($body_id);
+        $goodTmp =[
+            "name" => $good->name,
+            "product_pic" => $good->product_pic
+        ];
+    
         return [
             "id" => $trade->id,
             "out_trade_no" => $trade->out_trade_no,
@@ -275,7 +284,8 @@ class PayController extends Controller
             "total_fee" => $trade->total_fee,
             "type" => $type,
             "day" => $day,
-            "status" => Trade::getTradeStatus($trade->out_trade_no)
+            "status" => Trade::getTradeStatus($trade->out_trade_no),
+            "good" => $goodTmp
         ];
     }
 }
