@@ -15,6 +15,7 @@ class  Trade extends Model {
         $trade->phone = array_get($params,"phone");
         $trade->leasing_id = array_get($params,"leasing_id");
         $trade->address_id = array_get($params,"address_id");
+        $trade->body_id = array_get($params,"body_id");
         $trade->save();
         return $trade;
     }
