@@ -273,7 +273,8 @@ class PayController extends Controller
         $good = Good::GetGood($body_id);
         $goodTmp =[
             "name" => $good->name,
-            "product_pic" => $good->product_pic
+            "product_pic" => $good->product_pic,
+            "id" => $body_id
         ];
     
         return [
