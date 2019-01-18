@@ -61,4 +61,6 @@ Route::post('/updateDefaultAddress', 'UserController@updateDefaultAddress');
 
 Route::post('/userSave', 'UserController@userSave');
 
+Route::post('/getTopicsByTab', 'TopicController@getTopicsByTab');
+
 
