@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class  Topic extends Model {
         
-    public static function GetGoodById($id) {
+    public static function GetTopicById($id) {
         $topics = Topic::where("id", $id)->first();
         if ($topics) {
             return $topics;

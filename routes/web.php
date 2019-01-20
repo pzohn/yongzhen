@@ -63,4 +63,6 @@ Route::post('/userSave', 'UserController@userSave');
 
 Route::post('/getTopicsByTab', 'TopicController@getTopicsByTab');
 
+Route::post('/getTopicById', 'TopicController@getTopicById');
+
 
