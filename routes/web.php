@@ -65,4 +65,6 @@ Route::post('/getTopicsByTab', 'TopicController@getTopicsByTab');
 
 Route::post('/getTopicById', 'TopicController@getTopicById');
 
+Route::post('/uploadimg', 'FileController@uploadimg');
+
 
