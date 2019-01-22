@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
-    public function uploadimg()
+    public function uploadimg(Request $req)
     {
-         $file = request()->file('file');
+         $file = $req->file('file');
          if($file) {
             $info = $file->move('public/upload/weixin/');
             if ($info) {
