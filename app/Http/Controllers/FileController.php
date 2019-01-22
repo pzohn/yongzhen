@@ -19,7 +19,7 @@ class FileController extends Controller
             $type = $file->getClientMimeType();
 
             $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
-            $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+            $bool = Storage::disk('public')->put($filename, file_get_contents($realPath));
             var_dump($bool);
         }
        

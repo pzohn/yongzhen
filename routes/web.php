@@ -15,10 +15,6 @@ Route::get('/', function () {
     return "welcome to yongzhen";
 });
 
-Route::get('/hi', function () {
-    return view('upload');
-});
-
 
 Route::post('/onGetUser', 'UserController@getUser');
 
