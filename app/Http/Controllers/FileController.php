@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
 
 
 class FileController extends Controller
 {
-    public function uploadimg(Request $req)
+    public function upload(Request $req)
     {
          $file = $req->file('file');
-         if($file) {
-            $info = $file->move('public/upload/weixin/');
-            if ($info) {
-                $file = $info->getSaveName();
-                $res = ['errCode'=>0,'errMsg'=>'图片上传成功','file'=>$file];
-                return json($res);
-            }
+         if($file->isValid()) {
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();
+
+            $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
+            $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+            var_dump($bool);
         }
        
     }
