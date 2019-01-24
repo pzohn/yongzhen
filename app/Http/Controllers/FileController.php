@@ -20,7 +20,13 @@ class FileController extends Controller
 
             $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
             $bool = Storage::disk('public')->put($filename, file_get_contents($realPath));
-            var_dump($bool);
+            //var_dump($bool);
+            if ($bool){
+                return [
+                    "filename" => $filename,
+                    "realPath" => $realPath
+                ];
+            }
         }
        
     }
