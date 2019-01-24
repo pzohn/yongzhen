@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Uploadpic;
 
 
 class FileController extends Controller
@@ -22,10 +23,12 @@ class FileController extends Controller
             $bool = Storage::disk('public')->put($filename, file_get_contents($realPath));
             //var_dump($bool);
             if ($bool){
-                return [
-                    "filename" => $filename,
-                    "realPath" => $realPath
+                $url = "https://www.yztcc.com/storage/".$filename;
+                $params = [
+                    "url" => $url,
+                    "parent_id" => $req->get('parent_id')
                 ];
+                Uploadpic::InsertPic($params);
             }
         }
        

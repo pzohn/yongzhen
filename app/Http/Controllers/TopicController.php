@@ -34,4 +34,17 @@ class TopicController extends Controller
             "replies" => $replies
         ];
     }
+
+    public function insertTopic(Request $req) {
+        $params = [
+            "loginname" => $req->get('loginname'),
+            "avatar_url" => $req->get('avatar_url'),
+            "content" => $req->get('content'),
+            "title" => $req->get('title'),
+            "login_id" => $req->get('login_id'),
+            "last_reply_at" => date("Y-m-d")."T".date("h:i:s.x")."Z",
+            "tab" => $req->get('tab')
+        ];
+        Topic::InsertTopic($params);
+    }
 }

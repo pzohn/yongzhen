@@ -68,4 +68,6 @@ Route::post('/getTopicById', 'TopicController@getTopicById');
 
 Route::post('/upload', 'FileController@upload');
 
+Route::post('/TopicController', 'FileController@insertTopic');
+
 
