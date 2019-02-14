@@ -98,23 +98,19 @@ class GuzzleHttp {
         return self::tryDecodeJson($res, true);
     }
 
-    public static function options($post_data = [], $is_json = false, $is_xml = false, $timeout = 5, $connect_time = 5) {
-        $http_options = HttpOptionService::getInstance()->getOptions();
+    public static function options($post_data = [], $is_json = false, $timeout = 5, $connect_time = 5) {
         $options = [
             'form_params' => $post_data,
-            'connect_timeout' => $http_options['connect_timeout'],
-            'timeout' => $http_options['timeout'],
-            'headers' => $http_options['headers'],
+            'connect_timeout' => $timeout,
+            'timeout' => $timeout,
+            'headers' => [
+                'Accept' => 'application/x-www-form-urlencoded',
+            ],
         ];
         if ($is_json) {
             unset($options['form_params']);
             $options['json'] = $post_data;
-            $options['headers']['accept'] = 'application/json';
-        }
-        if ($is_xml) {
-        	unset($options['form_params']);
-            $options['body'] = $post_data;
-            $options['headers']['Accept'] = 'application/xml';
+            $options['headers']['Accept'] = 'application/json';
         }
         if (empty($post_data)) {
             unset($options['form_params']);
