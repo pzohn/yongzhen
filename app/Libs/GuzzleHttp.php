@@ -109,7 +109,7 @@ class GuzzleHttp {
         if ($is_json) {
             unset($options['form_params']);
             $options['json'] = $post_data;
-            $options['headers']['Accept'] = 'application/json';
+            $options['headers']['accept'] = 'application/json';
         }
         if ($is_xml) {
         	unset($options['form_params']);
