@@ -306,15 +306,14 @@ class UserController extends Controller
     }
 
     public function phoneVerify(Request $req) {
-        $data = [
-            "sid" => "1cea456798e180e58fe1e96e9ef9a1e2",
-            "token" => "2fe296ae9fb014aa261b93652375ad0b",
-            "appid" => "c3f231b11343405bb2a8956b2609205f",
-            "templateid" => "430629",
-            "param" => $req->get('param'),
-            "mobile" => $req->get('mobile')
-        ]; 
-        $arry = $data;
+        $arry = array(
+            'sid'=>"1cea456798e180e58fe1e96e9ef9a1e2",
+            'token'=>"2fe296ae9fb014aa261b93652375ad0b",
+            'appid'=>"c3f231b11343405bb2a8956b2609205f",
+            'templateid'=>"430629",
+			'param'=>$req->get('param'),
+			'mobile'=>$req->get('mobile')
+        );
         $url = "https://open.ucpaas.com/ol/sms/sendsms";
         $result = GuzzleHttp::postJson($url, $arry);
         return $result;
