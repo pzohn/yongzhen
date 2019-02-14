@@ -314,10 +314,7 @@ class UserController extends Controller
             "param" => $req->get('param'),
             "mobile" => $req->get('mobile')
         ]; 
-        $post_date = GuzzleHttp::options($data, true);
-        $arry['json'] = $data;
-        $arry['header'] = [];
-        $arry['header']['Accept'] = 'application/json';
+        $post_date = GuzzleHttp::options($data);
         $url = "https://open.ucpaas.com/ol/sms/sendsms";
         $result = GuzzleHttp::postJson($url, $post_date);
         return $result;
