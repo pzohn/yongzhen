@@ -314,8 +314,7 @@ class UserController extends Controller
             "param" => $req->get('param'),
             "mobile" => $req->get('mobile')
         ]; 
-        $arry = array($data);
-        $data_json = json_encode($data); 
+        $arry = $data;
         $url = "https://open.ucpaas.com/ol/sms/sendsms";
         $result = GuzzleHttp:: postJson($url, $arry);
         return $result;
