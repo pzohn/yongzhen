@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Libs\GuzzleHttp;
 use App\Models\User;
 use App\Models\Good;
 use App\Models\City;
