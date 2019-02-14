@@ -316,7 +316,7 @@ class UserController extends Controller
         ]; 
         $arry = $data;
         $url = "https://open.ucpaas.com/ol/sms/sendsms";
-        $result = GuzzleHttp:: postJson($url, $arry);
+        $result = GuzzleHttp::postJson($url, $arry);
         return $result;
     }
 }
