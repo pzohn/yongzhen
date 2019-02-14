@@ -321,13 +321,14 @@ class UserController extends Controller
         return $result;
         */
 
+        $param = $this->createRand(4);
         $url = "https://open.ucpaas.com/ol/sms/sendsms";
         $body_json = array(
             "sid" => "1cea456798e180e58fe1e96e9ef9a1e2",
             "token" => "2fe296ae9fb014aa261b93652375ad0b",
             "appid" => "c3f231b11343405bb2a8956b2609205f",
             "templateid" => "430629",
-            "param" => $req->get('param'),
+            "param" => $param,
             "mobile" => $req->get('mobile')
         );
         $body = json_encode($body_json);
@@ -383,5 +384,16 @@ class UserController extends Controller
             $result = file_get_contents($url, false, stream_context_create($opts));
         }
         return $result;
+    }
+
+    protected function createRand($length) {
+        $str='0123456789';
+        $len=strlen($str)-1;
+        $randstr='';
+        for($i=0;$i<$length;$i++){
+        $num=mt_rand(0,$len);
+        $randstr .= $str[$num];
+        }
+        return $randstr;
     }
 }
