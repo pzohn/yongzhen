@@ -70,4 +70,6 @@ Route::post('/upload', 'FileController@upload');
 
 Route::post('/insertTopic', 'TopicController@insertTopic');
 
+Route::post('/phoneVerify', 'UserController@phoneVerify');
+
 
