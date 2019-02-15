@@ -333,10 +333,9 @@ class UserController extends Controller
         );
         $body = json_encode($body_json);
         $data = $this->getResult($url, $body,'post');
-        return $data;
-        $arry = json_decode($data);
-        return array_get($data,"code");
-        if (array_get($arry,"code") == "000000"){
+        //return $data;
+        $obj = json_decode($data);
+        if ($obj->code == "000000"){
             return $param;
         }
         return "0000";
