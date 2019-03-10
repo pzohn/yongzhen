@@ -15,7 +15,7 @@ class HospitalController extends Controller
     }
 
     public function getCities() {
-        $cities = City::GetTypes();
+        $cities = City::GetCities();
         return $cities;
     }
 
