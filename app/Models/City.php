@@ -13,4 +13,11 @@ class  City extends Model {
             return $city->name;
         }
     }
+
+    public static function GetCities() {
+        $cities = City::get();
+        if ($cities) {
+            return $cities;
+        }
+    }
 }

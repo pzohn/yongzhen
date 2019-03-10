@@ -72,4 +72,10 @@ Route::post('/insertTopic', 'TopicController@insertTopic');
 
 Route::post('/phoneVerify', 'UserController@phoneVerify');
 
+Route::post('/getHosptialTypes', 'HospitalController@getTypes');
+
+Route::post('/getHosptialCities', 'HospitalController@getCities');
+
+Route::post('/getHospitalsByCity', 'HospitalController@getHospitalsByCity');
+
 
