@@ -36,7 +36,6 @@ class HospitalController extends Controller
             ];
         }
         return [
-            "count" => $count,
             "hospitals" => $hospitalsTmp
         ];
     }
