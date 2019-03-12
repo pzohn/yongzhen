@@ -18,12 +18,10 @@ class UserController extends Controller
     }
 
     public function login(Request $req) {
-        $callback = $req->get('callback');
-
         $phone = $req->get('phone');
         $passwd = $req->get('passwd');
         $user = User::UserLogin($phone,$passwd);
-        return $callback+$user;
+        return $user;
     }
 
     public function registor(Request $req) {
