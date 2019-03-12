@@ -76,7 +76,7 @@ class HospitalController extends Controller
             return [
                 "info" => $res->info,
                 "price" => $res->price,
-                "shengPrice" => $res->info
+                "shengPrice" => $res->shengPrice
             ];
 
         }else{
@@ -87,7 +87,7 @@ class HospitalController extends Controller
                 $youhuiItemTmp[] = [
                     "info" => $res->info,
                     "price" => $res->price,
-                    "shengPrice" => $res->info
+                    "shengPrice" => $res->shengPrice
                 ];
             }
             return $youhuiItemTmp;
