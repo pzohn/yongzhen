@@ -3,14 +3,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class  YouhuiItem extends Model {
+class  Youhuiitem extends Model {
         
     public $timestamps = false;
 
     public static function GetItem ($id) {
-        $youhuiItem = YouhuiItem::where("id", $id)->first();
-        if ($youhuiItem) {
-            return $youhuiItem;
+        $youhuiitem = Youhuiitem::where("id", $id)->first();
+        if ($youhuiitem) {
+            return $youhuiitem;
         }
     }
 }
