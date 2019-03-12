@@ -79,7 +79,7 @@ class HospitalController extends Controller
             ];
 
         }else{
-            $arry = preg_split("/@/",$leasing_ids);
+            $arry = preg_split("/@/",$youhuiItem);
             $youhuiItemTmp = [];
             foreach ($arry as $v) {
                 $youhuiItemTmp[] = [
