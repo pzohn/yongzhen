@@ -69,8 +69,7 @@ class HospitalController extends Controller
         ];
     }
 
-    public function getYouhuiItem(Request $req) {
-        $youhuiItem = $req->get('youhuiItem');
+    public function getYouhuiItem($youhuiItem) {
         $pos = strpos($youhuiItem, '@');
         if ($pos == false){
             $res = YouhuiItem::GetItem($youhuiItem);
