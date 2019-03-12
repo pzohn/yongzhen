@@ -7,7 +7,7 @@ use App\Models\Hospitaltype;
 use App\Models\City;
 use App\Models\Hospital;
 use App\Models\Hospitalservice;
-use App\Models\Youhuiitem;
+use App\Models\YouhuiItem;
 
 
 class HospitalController extends Controller
@@ -73,7 +73,7 @@ class HospitalController extends Controller
         $youhuiItem = $req->get('youhuiItem');
         $pos = strpos($youhuiItem, '@');
         if ($pos == false){
-            $youhuiItemTmp = Youhuiitem::GetItem($youhuiItem);
+            $youhuiItemTmp = YouhuiItem::GetItem($youhuiItem);
             return [
                $youhuiItemTmp
             ];
@@ -83,7 +83,7 @@ class HospitalController extends Controller
             $youhuiItemTmp = [];
             foreach ($arry as $v) {
                 $youhuiItemTmp[] = [
-                    Youhuiitem::GetItem($v)
+                    YouhuiItem::GetItem($v)
                 ];
             }
             return $youhuiItemTmp;
