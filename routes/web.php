@@ -78,4 +78,6 @@ Route::post('/getHosptialCities', 'HospitalController@getCities');
 
 Route::post('/getHospitalsByCity', 'HospitalController@getHospitalsByCity');
 
+Route::post('/getHospitalservicesByType', 'HospitalController@getHospitalservicesByType');
+
 

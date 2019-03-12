@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Hospitaltype;
 use App\Models\City;
 use App\Models\Hospital;
+use App\Models\Hospitalservice;
 
 
 class HospitalController extends Controller
@@ -37,6 +38,33 @@ class HospitalController extends Controller
         }
         return [
             "hospitals" => $hospitalsTmp
+        ];
+    }
+
+    public function getHospitalservicesByType(Request $req) {
+        $type = $req->get('type');
+        $hospitalservices = Hospitalservice::GetHospitalserviceByType($type);
+        $hospitalservicesTmp = [];
+        foreach ($hospitalservices as $k => $v) {
+            $hospitalservicesTmp[] = [
+            "id" => $v->id,
+            "title" => $v->title,
+	        "info" => $v->info,
+            "price" => $v->price,
+            "oldPrice" => $v->oldPrice,
+            "icon" => $v->icon,
+            "image" => $v->image,
+            "serviceinfo" => $v->serviceinfo,
+            "buyCnt" => $v->buyCnt,
+	        "tipsInfo" => $v->tipsInfo,
+            "chanPinDescUrl" => $v->chanPinDescUrl,
+            "serverDescUrl" => $v->serverDescUrl,
+            "attentionUrl" => $v->attentionUrl,
+            "youhuiItem" => $v->youhuiItem,
+            ];
+        }
+        return [
+            "hospitalservices" => $hospitalservicesTmp
         ];
     }
 }
