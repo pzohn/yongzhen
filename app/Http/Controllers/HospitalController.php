@@ -7,6 +7,7 @@ use App\Models\Hospitaltype;
 use App\Models\City;
 use App\Models\Hospital;
 use App\Models\Hospitalservice;
+use App\Models\YouhuiItem;
 
 
 class HospitalController extends Controller
@@ -60,11 +61,32 @@ class HospitalController extends Controller
             "chanPinDescUrl" => $v->chanPinDescUrl,
             "serverDescUrl" => $v->serverDescUrl,
             "attentionUrl" => $v->attentionUrl,
-            "youhuiItem" => $v->youhuiItem,
+            "youhuiItem" => $this->getYouhuiItem($v->youhuiItem),
             ];
         }
         return [
             "hospitalservices" => $hospitalservicesTmp
         ];
+    }
+
+    public function getYouhuiItem(Request $req) {
+        $youhuiItem = $req->get('youhuiItem');
+        $pos = strpos($youhuiItem, '@');
+        if ($pos == false){
+            $youhuiItemTmp = YouhuiItem::GetItem($youhuiItem);
+            return [
+               $youhuiItemTmp
+            ];
+
+        }else{
+            $arry = preg_split("/@/",$leasing_ids);
+            $youhuiItemTmp = [];
+            foreach ($arry as $v) {
+                $youhuiItemTmp[] = [
+                    YouhuiItem::GetItem($v)
+                ];
+            }
+            return $youhuiItemTmp;
+        }
     }
 }

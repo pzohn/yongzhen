@@ -80,4 +80,6 @@ Route::post('/getHospitalsByCity', 'HospitalController@getHospitalsByCity');
 
 Route::post('/getHospitalservicesByType', 'HospitalController@getHospitalservicesByType');
 
+Route::post('/getYouhuiItem', 'HospitalController@getYouhuiItem');
+
 
