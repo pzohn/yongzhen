@@ -73,17 +73,22 @@ class HospitalController extends Controller
         $youhuiItem = $req->get('youhuiItem');
         $pos = strpos($youhuiItem, '@');
         if ($pos == false){
-            $youhuiItemTmp = YouhuiItem::GetItem($youhuiItem);
+            $res = YouhuiItem::GetItem($youhuiItem);
             return [
-               $youhuiItemTmp
+                "info" => $res->info,
+                "price" => $res->price,
+                "shengPrice" => $res->info
             ];
 
         }else{
             $arry = preg_split("/@/",$youhuiItem);
             $youhuiItemTmp = [];
             foreach ($arry as $v) {
+                $res = YouhuiItem::GetItem($v);
                 $youhuiItemTmp[] = [
-                    YouhuiItem::GetItem($v)
+                    "info" => $res->info,
+                    "price" => $res->price,
+                    "shengPrice" => $res->info
                 ];
             }
             return $youhuiItemTmp;
