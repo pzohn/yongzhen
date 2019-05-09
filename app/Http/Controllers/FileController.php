@@ -13,7 +13,10 @@ class FileController extends Controller
     public function upload(Request $req)
     {
         \Log::info("1111111111111111111",[]);
+         $id = $req->file('parent_id');
+         \Log::info("=============1111111111111111111",[]);
          $file = $req->file('file');
+
          if($file->isValid()) {
             \Log::info("12222222222222",[]);
             $originalName = $file->getClientOriginalName(); // 文件原名
